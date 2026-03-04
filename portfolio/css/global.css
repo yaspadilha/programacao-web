@@ -1,0 +1,139 @@
+body {
+    background-color: var(--cor-fundo-escura);
+    padding: 15px;
+}
+
+.container-pagina {
+    background-color: #1E0044;
+    border-radius: 10px;
+    height: 100%;
+    padding: 60px;
+}
+
+.paginas-titulo {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto-branco);
+    font-size: 3rem;
+    font-weight: 400;
+    margin-top: 4rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu-navegacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-navegacao-botoes {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+
+.menu-nome {
+    color: var(--cor-texto-branco);
+    font-family: var(--fonte-secundaria);
+    font-style: italic;
+}
+
+.btn-navegacao {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto-branco);
+    text-decoration: none;
+}
+
+.btn-navegacao:hover {
+    color: #9E2DF6;
+}
+
+.btn-contato {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--cor-texto-branco);
+    font-family: var(--fonte-principal);
+    border: 1px solid #9E2DF6;
+    box-shadow: 1px 1px 15px 1px #9E2DF6;
+    text-align: center;
+    padding: 10px;
+    border-radius: 18px;
+    width: 6.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.icone-btn {
+    width: 11.5px;
+    height: 11.5px;
+    color: var(--cor-texto-branco);
+}
+
+.btn-contato:hover {
+    background-color: #9E2DF6;
+}
+
+.icone {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-saiba-mais {
+    background: linear-gradient(to left, #9E2DF6, #B923FF);
+    padding: 15px;
+    color: var(--cor-texto-branco);
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--fonte-principal);
+    border: none;
+    width: 6.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    align-self: center
+}
+
+.btn-saiba-mais:hover {
+    background: linear-gradient(to left, #9E2DF6, #BD6BFF, #B923FF);
+}
+
+@media (max-width: 768px) {
+    .menu-navegacao {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-navegacao-botoes {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        font-size: 0.9rem;
+    }
+
+    .menu-nome {
+        color: var(--cor-texto-branco);
+        font-family: var(--fonte-secundaria);
+        font-style: italic;
+        font-size: 1.2rem;
+    }
+    .btn-contato {
+        font-size: 0.7rem;
+        width: auto;
+        gap: 10px;
+        margin-top: 25px;
+    }
+    .btn-saiba-mais {
+        font-size: 0.7rem;
+        height: auto;
+        width: auto;
+    }
+    .paginas-titulo {
+        font-size: 2rem;
+    }
+}

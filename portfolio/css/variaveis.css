@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+:root {
+    --cor-fundo-escura: #0B001A;
+    --cor-fundo-clara: #E9DEFF;
+    --cor-texto-branco: #fff;
+    --cor-texto-preto: #000;
+    --fonte-principal: 'Montserrat', sans-serif;
+    --fonte-secundaria: 'Cormorant Garamond', serif;
+}

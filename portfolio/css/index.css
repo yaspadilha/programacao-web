@@ -1,0 +1,127 @@
+.container-titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.5rem;
+
+}
+
+.titulo-h1 {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.titulo {
+    color: var(--cor-texto-branco);
+    font-family: var(--fonte-principal);
+    font-size: 3.5rem;
+    font-weight: 410;
+}
+
+.nome {
+    font-family: var(--fonte-secundaria);
+    font-style: italic;
+    font-weight: 900;
+    background-image: linear-gradient(to right, #8338EC, #B923FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-size: 3.5rem;
+}
+
+.sublinhado {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, #8338EC, #B923FF);
+    clip-path: polygon(0% 0%,
+            50% 0%,
+            100% 100%
+        );
+    border-radius: 20px;
+}
+
+.container-nome {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.descricao {
+    color: var(--cor-texto-branco);
+    font-family: var(--fonte-principal);
+    text-align: center;
+    width: 70vw;
+}
+
+.container-indice {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--cor-fundo-clara);
+    border-radius: 10px;
+    padding: 50px;
+    margin-top: 2rem;
+}
+
+.titulo-indice {
+    font-size: 2.5rem;
+    font-weight: 450;
+}
+
+.indice-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.indice-btn:hover {
+    background-color: #cdcdcd;
+    cursor: pointer;
+}
+
+.indice-titulo {
+    font-family: var(--fonte-principal);
+}
+
+.btn-titulo {
+    color: black;
+}
+
+.btn-titulo-h2 {
+    font-family: var(--fonte-principal);
+    font-weight: 600;
+}
+
+.btn-titulo-h3 {
+    font-family: var(--fonte-principal);
+    font-weight: 500;
+}
+
+.linha {
+    background-color: #000;
+    width: 100%;
+    height: 1px;
+}
+
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 1.5rem;
+    }
+    .nome {
+        font-size: 1.5rem;
+    }
+    .descricao {
+        font-size: 0.8rem;
+    }
+    .container-indice {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .indice-botoes {
+        margin-top: 2.5rem;
+    }
+}

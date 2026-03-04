@@ -1,0 +1,94 @@
+.titulo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario-topo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+input {
+    border-radius: 5px;
+    padding: 8px;
+}
+
+label {
+    color: var(--cor-texto-branco);
+    font-family: var(--fonte-principal);
+    margin-top: 3rem;
+}
+
+#nome {
+    width: 18rem;
+}
+
+.container-contato {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.titulo-contato {
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto-branco);
+    font-weight: 300;
+}
+
+.contato-opcoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto-branco);
+    cursor: pointer;
+    gap: 1.5rem;
+    margin-top: 4rem;
+}
+
+.opcao-contato {
+    color: #fff;
+}
+
+.opcao-contato:hover {
+    text-decoration: underline;
+}
+
+.input-mensagem {
+    height: 5rem;
+}
+
+@media (max-width: 768px) {
+    .formulario {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .formulario-topo {
+        display: flex;
+        flex-direction: column;
+    }
+    .container-contato {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    #nome {
+        width: 100%;
+    }
+    input {
+        width: 100%;
+    }
+    .titulo-contato {
+        text-align: center;
+        margin-top: 4rem;
+    }
+}
