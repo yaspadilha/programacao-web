@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 50px;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #6472F9;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .concluida {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .modal-conteudo {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-conteudo input,
+        .modal-conteudo select {
+            width: 100%;
+            padding: 8px;
+        }
+
+        .select-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 25px;
+        }
+
+        select {
+            width: 200px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lista de Tarefas</h1>
+
+    <button onclick="abrirModal()">+ Nova Tarefa</button>
+
+    <div class="select-container">
+        <select id="filtroCategoria" onchange="renderizarTarefas()">
+            <option value="">Todas categorias</option>
+        </select>
+
+        <select id="ordenacao" onchange="renderizarTarefas()">
+            <option value="">Ordenar</option>
+            <option value="data">Data</option>
+            <option value="prioridade">Prioridade</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Prioridade</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaTarefas"></tbody>
+    </table>
+
+    <div class="modal" id="modal">
+        <div class="modal-conteudo">
+            <h3>Nova tarefa</h3>
+            <input type="text" id="nome" placeholder="Nome">
+            <input type="text" id="categoria" placeholder="Categoria">
+            <select id="prioridade">
+                <option value="1">Baixa</option>
+                <option value="2">Média</option>
+                <option value="3">Alta</option>
+            </select>
+            <input type="date" id="data">
+
+            <button onclick="adicionarTarefa()">Salvar</button>
+            <button onclick="fecharModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        let listaTarefas = [];
+
+        function abrirModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function fecharModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function adicionarTarefa() {
+            const tarefa = {
+                id: Date.now(),
+                nome: nome.value,
+                categoria: categoria.value,
+                prioridade: prioridade.value,
+                data: data.value,
+                concluida: false
+            };
+
+            listaTarefas.push(tarefa);
+            atualizarCategorias();
+            renderizarTarefas();
+            fecharModal();
+
+            nome.value = "";
+            categoria.value = "";
+            data.value = "";
+        }
+
+        function atualizarCategorias() {
+            const filtro = document.getElementById("filtroCategoria");
+            const categorias = [...new Set(listaTarefas.map(t => t.categoria))];
+
+            filtro.innerHTML = '<option value="">Todas categorias</option>';
+
+            categorias.forEach(cat => {
+                const opcao = document.createElement("option");
+                opcao.value = cat;
+                opcao.textContent = cat;
+                filtro.appendChild(opcao);
+            });
+        }
+
+        function alternarConclusao(id) {
+            const tarefa = listaTarefas.find(t => t.id === id);
+            tarefa.concluida = !tarefa.concluida;
+            renderizarTarefas();
+        }
+
+        function excluirTarefa(id) {
+            listaTarefas = listaTarefas.filter(t => t.id !== id);
+            renderizarTarefas();
+        }
+
+        function renderizarTarefas() {
+            let tarefasFiltradas = [...listaTarefas];
+
+            const filtro = filtroCategoria.value;
+            if (filtro) {
+                tarefasFiltradas = tarefasFiltradas.filter(t => t.categoria === filtro);
+            }
+
+            const tipoOrdenacao = ordenacao.value;
+            if (tipoOrdenacao === "data") {
+                tarefasFiltradas.sort((a, b) => new Date(a.data) - new Date(b.data));
+            } else if (tipoOrdenacao === "prioridade") {
+                tarefasFiltradas.sort((a, b) => b.prioridade - a.prioridade);
+            }
+
+            const tabela = document.getElementById("tabelaTarefas");
+            tabela.innerHTML = "";
+
+            tarefasFiltradas.forEach(t => {
+                const linha = document.createElement("tr");
+                if (t.concluida) linha.classList.add("concluida");
+
+                linha.innerHTML = `
+                    <td>${t.nome}</td>
+                    <td>${t.categoria}</td>
+                    <td>${t.prioridade}</td>
+                    <td>${t.data ? new Date(t.data).toLocaleDateString() : ''}</td>
+                    <td>
+                        <button onclick="alternarConclusao(${t.id})">Concluir</button>
+                        <button onclick="excluirTarefa(${t.id})">Deletar</button>
+                    </td>
+                `;
+
+                tabela.appendChild(linha);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
